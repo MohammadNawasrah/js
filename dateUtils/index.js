@@ -139,7 +139,7 @@ class DateUtils {
     }
 }
 
-// Export the DateUtils class for use in other files
+
 /* This code block is a common pattern used in Node.js environments to export modules for use in other
 files. */
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
