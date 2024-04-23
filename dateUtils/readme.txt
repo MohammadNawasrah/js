@@ -60,6 +60,13 @@ console.log(DateUtils.getMonthName(1)); // Output: January
 // Get the name of the day from the day number
 console.log(DateUtils.getDayName(0)); // Output: Sunday
 
+const timestamp = 1617242400000; // Example timestamp
+const dateTime = DateUtils.timestampToDateTime(timestamp);
+console.log(dateTime); // Output: Date object representing the corresponding date and time
+
+console.log(DateUtils.isTimestamp(1617242400000)); // Output: true
+console.log(DateUtils.isTimestamp('2021-04-01')); // Output: false
+
 
 
 API
@@ -286,3 +293,23 @@ Get the name of the day in English from the day number (0 for Sunday, 1 for Mond
 javascript
 
 console.log(DateUtils.getDayName(0)); // Output: Sunday
+
+============================================================================================
+
+============================================================================================
+
+javascript
+
+const timestamp = 1617242400000; // Example timestamp
+const dateTime = DateUtils.timestampToDateTime(timestamp);
+console.log(dateTime); // Output: Date object representing the corresponding date and time
+
+============================================================================================
+
+javascript
+
+console.log(DateUtils.isTimestamp(1617242400000)); // Output: true
+console.log(DateUtils.isTimestamp('2021-04-01')); // Output: false
+
+============================================================================================
+

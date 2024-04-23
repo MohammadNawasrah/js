@@ -1,9 +1,11 @@
 /**
+ * @author Mohammad Ayman Nawasrah
  * A utility class for working with dates.
  * @class DateUtils
  */
 class DateUtils {
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `dateToString` converts a date object to a string with a specified format using
      * Intl.DateTimeFormat.
      * @param {Date} date - The date object that you want to convert to a string in a specific format.
@@ -27,6 +29,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `stringToDate` converts a string representation of a date into a Date object in
      * JavaScript.
      * @param {string} dateString - A string representing a date in a specific format, such as "2022-10-15".
@@ -37,6 +40,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `formatDate` takes a date object and an optional format string, and returns the
      * formatted date according to the specified format.
      * @param {Date} date - The date object that you want to format.
@@ -57,6 +61,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The static getNow() function returns the current date and time.
      * @returns {Date} An instance of the Date object representing the current date and time.
      */
@@ -65,6 +70,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `getMonthFromDate` takes a date as input and returns the full name of the month in
      * English.
      * @param {Date} date - A Date object representing the date for which you want to retrieve the month.
@@ -79,6 +85,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
       * The function `compareDateStrings` compares two date strings and returns true if they represent the
       * same date and time.
       * @param {string} dateString1 - A string representing a date in a specific format, such as "2022-10-15".
@@ -96,12 +103,14 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The `compareDates` function in JavaScript compares two dates based on their time values.
      * @param {Date} date1 - A Date object representing a specific date and time.
      * @param {Date} date2 - A Date object representing a specific date and time.
      * @returns {boolean} A boolean value indicating whether the time values of `date1` and `date2` are equal.
      */
     /**
+     * @author Mohammad Ayman Nawasrah
      * The `compareDates` function in JavaScript compares two dates based on their time values.
      * @param {Date} date1 - A Date object representing a specific date and time.
      * @param {Date} date2 - A Date object representing a specific date and time.
@@ -115,6 +124,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `getHoursFromDate` returns the hour component of a given date.
      * @param {Date} date - A Date object representing a specific date and time.
      * @returns {number} The hour component of the input date.
@@ -127,6 +137,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `getMinutesFromDate` returns the minutes component of a given date.
      * @param {Date} date - A Date object representing a specific date and time.
      * @returns {number} The minutes component of the input date.
@@ -139,6 +150,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `getSecondsFromDate` returns the seconds component of a given date.
      * @param {Date} date - A Date object representing a specific date and time.
      * @returns {number} The seconds component of the input date.
@@ -151,6 +163,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * The function `getTimeFromDate` returns the timestamp of a given date.
      * @param {Date} date - A Date object representing a specific date and time.
      * @returns {number} The number of milliseconds since January 1, 1970, 00:00:00 UTC.
@@ -163,6 +176,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
     * Check if a given value is a valid Date object.
     * @param {*} value - The value to check.
     * @returns {boolean} Returns true if the value is a valid Date object, otherwise false.
@@ -171,6 +185,7 @@ class DateUtils {
         return value instanceof Date && !isNaN(value);
     }
     /**
+     * @author Mohammad Ayman Nawasrah
  * Check if a given value is a valid Date object.
  * @param {*} value - The value to check.
  * @returns {boolean} Returns true if the value is a valid Date object, otherwise false.
@@ -180,6 +195,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * Check if a given value is a valid time string in the format "HH:mm:ss".
      * @param {Date} value - The value to check.
      * @returns {boolean} Returns true if the value is a valid time, otherwise false.
@@ -199,6 +215,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * Check if a given value is a valid date-time string in the format "YYYY-MM-DDTHH:mm:ss".
      * @param {Date} value - The value to check.
      * @returns {boolean} Returns true if the value is a valid date-time, otherwise false.
@@ -211,6 +228,7 @@ class DateUtils {
     }
 
     /**
+     * @author Mohammad Ayman Nawasrah
      * Check if a given value is a valid date string in the format "YYYY-MM-DD".
      * @param {Date} value - The value to check.
      * @returns {boolean} Returns true if the value is a valid date, otherwise false.
@@ -223,10 +241,11 @@ class DateUtils {
     }
 
     /**
-   * Get the name of the month in English from the month number (1 for January, 2 for February, etc.).
-   * @param {number} monthNumber - The month number (1-12).
-   * @returns {string} The name of the month in English.
-   */
+     * @author Mohammad Ayman Nawasrah
+     * Get the name of the month in English from the month number (1 for January, 2 for February, etc.).
+     * @param {number} monthNumber - The month number (1-12).
+     * @returns {string} The name of the month in English.
+    */
     static getMonthName(monthNumber) {
         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         if (monthNumber < 1 || monthNumber > 12 || !Number.isInteger(monthNumber)) {
@@ -235,6 +254,7 @@ class DateUtils {
         return months[monthNumber - 1];
     }
     /**
+     * @author Mohammad Ayman Nawasrah
      * Get the name of the day in English from the day number (0 for Sunday, 1 for Monday, etc.).
      * @param {number} dayNumber - The day number (0-6).
      * @returns {string} The name of the day in English.
@@ -245,6 +265,25 @@ class DateUtils {
             throw new Error("Invalid day number");
         }
         return days[dayNumber];
+    }
+
+    /**
+     * @author Mohammad Ayman Nawasrah 
+     * Check if a value is a valid timestamp.
+     * @param {*} value - The value to check.
+     * @returns {boolean} Returns true if the value is a valid timestamp, otherwise false.
+     */
+    static isTimestamp(value) {
+        return Number.isInteger(value) && value >= 0 && value <= 8640000000000000; // Maximum valid timestamp value
+    }
+    /**
+     * @author Mohammad Ayman Nawasrah 
+     * Convert a timestamp to a Date object representing the corresponding date and time.
+     * @param {number} timestamp - The timestamp to convert.
+     * @returns {Date} A Date object representing the corresponding date and time.
+     */
+    static timestampToDateTime(timestamp) {
+        return new Date(timestamp);
     }
 }
 
