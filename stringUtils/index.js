@@ -1,8 +1,9 @@
+/* The StringUtils class provides a method to remove non-word characters from a string. */
 /**
  * A utility class for working with strings.
  * @class StringsUtils
  */
-class stringUtils {
+class StringUtils {
   /**
    * @param {string} string
    * @returns {string}
@@ -18,6 +19,6 @@ class stringUtils {
 files. */
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
   module.exports = {
-    stringUtils,
+    StringUtils,
   };
 }
