@@ -79,16 +79,19 @@ class DateUtils {
     }
 
     /**
-     * The function `compareDateStrings` compares two date strings and returns true if they represent the
-     * same date and time.
-     * @param {string} dateString1 - A string representing a date in a specific format, such as "2022-10-15".
-     * @param {string} dateString2 - A string representing a date that will be converted to a `Date` object.
-     * @returns {boolean} A boolean value indicating whether the two input date strings represent the same
-     * date and time.
-     */
+      * The function `compareDateStrings` compares two date strings and returns true if they represent the
+      * same date and time.
+      * @param {string} dateString1 - A string representing a date in a specific format, such as "2022-10-15".
+      * @param {string} dateString2 - A string representing a date that will be converted to a `Date` object.
+      * @returns {boolean} A boolean value indicating whether the two input date strings represent the same
+      * date and time.
+      */
     static compareDateStrings(dateString1, dateString2) {
         const date1 = new Date(dateString1);
         const date2 = new Date(dateString2);
+        if (isNaN(date1) || isNaN(date2)) {
+            throw new Error("Invalid date string");
+        }
         return date1.getTime() === date2.getTime();
     }
 
@@ -98,7 +101,16 @@ class DateUtils {
      * @param {Date} date2 - A Date object representing a specific date and time.
      * @returns {boolean} A boolean value indicating whether the time values of `date1` and `date2` are equal.
      */
+    /**
+     * The `compareDates` function in JavaScript compares two dates based on their time values.
+     * @param {Date} date1 - A Date object representing a specific date and time.
+     * @param {Date} date2 - A Date object representing a specific date and time.
+     * @returns {boolean} A boolean value indicating whether the time values of `date1` and `date2` are equal.
+     */
     static compareDates(date1, date2) {
+        if (!(date1 instanceof Date) || !(date2 instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
         return date1.getTime() === date2.getTime();
     }
 
@@ -108,6 +120,9 @@ class DateUtils {
      * @returns {number} The hour component of the input date.
      */
     static getHoursFromDate(date) {
+        if (!(date instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
         return date.getHours();
     }
 
@@ -117,6 +132,9 @@ class DateUtils {
      * @returns {number} The minutes component of the input date.
      */
     static getMinutesFromDate(date) {
+        if (!(date instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
         return date.getMinutes();
     }
 
@@ -126,6 +144,9 @@ class DateUtils {
      * @returns {number} The seconds component of the input date.
      */
     static getSecondsFromDate(date) {
+        if (!(date instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
         return date.getSeconds();
     }
 
@@ -135,7 +156,95 @@ class DateUtils {
      * @returns {number} The number of milliseconds since January 1, 1970, 00:00:00 UTC.
      */
     static getTimeFromDate(date) {
+        if (!(date instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
         return date.getTime();
+    }
+
+    /**
+    * Check if a given value is a valid Date object.
+    * @param {*} value - The value to check.
+    * @returns {boolean} Returns true if the value is a valid Date object, otherwise false.
+    */
+    static isDate(value) {
+        return value instanceof Date && !isNaN(value);
+    }
+    /**
+ * Check if a given value is a valid Date object.
+ * @param {*} value - The value to check.
+ * @returns {boolean} Returns true if the value is a valid Date object, otherwise false.
+ */
+    static isDate(value) {
+        return value instanceof Date && !isNaN(value);
+    }
+
+    /**
+     * Check if a given value is a valid time string in the format "HH:mm:ss".
+     * @param {Date} value - The value to check.
+     * @returns {boolean} Returns true if the value is a valid time, otherwise false.
+     */
+    static isTime(value) {
+        if (!(value instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
+        const hours = value.getHours();
+        const minutes = value.getMinutes();
+        const seconds = value.getSeconds();
+        return (
+            Number.isInteger(hours) && hours >= 0 && hours < 24 &&
+            Number.isInteger(minutes) && minutes >= 0 && minutes < 60 &&
+            Number.isInteger(seconds) && seconds >= 0 && seconds < 60
+        );
+    }
+
+    /**
+     * Check if a given value is a valid date-time string in the format "YYYY-MM-DDTHH:mm:ss".
+     * @param {Date} value - The value to check.
+     * @returns {boolean} Returns true if the value is a valid date-time, otherwise false.
+     */
+    static isDateTime(value) {
+        if (!(value instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
+        return !isNaN(value);
+    }
+
+    /**
+     * Check if a given value is a valid date string in the format "YYYY-MM-DD".
+     * @param {Date} value - The value to check.
+     * @returns {boolean} Returns true if the value is a valid date, otherwise false.
+     */
+    static isDateOnly(value) {
+        if (!(value instanceof Date)) {
+            throw new Error("Invalid date parameter");
+        }
+        return value.toISOString().slice(0, 10) === value.toISOString().slice(0, 10);
+    }
+
+    /**
+   * Get the name of the month in English from the month number (1 for January, 2 for February, etc.).
+   * @param {number} monthNumber - The month number (1-12).
+   * @returns {string} The name of the month in English.
+   */
+    static getMonthName(monthNumber) {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        if (monthNumber < 1 || monthNumber > 12 || !Number.isInteger(monthNumber)) {
+            throw new Error("Invalid month number");
+        }
+        return months[monthNumber - 1];
+    }
+    /**
+     * Get the name of the day in English from the day number (0 for Sunday, 1 for Monday, etc.).
+     * @param {number} dayNumber - The day number (0-6).
+     * @returns {string} The name of the day in English.
+     */
+    static getDayName(dayNumber) {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        if (dayNumber < 0 || dayNumber > 6 || !Number.isInteger(dayNumber)) {
+            throw new Error("Invalid day number");
+        }
+        return days[dayNumber];
     }
 }
 
