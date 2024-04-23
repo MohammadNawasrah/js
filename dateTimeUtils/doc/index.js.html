@@ -403,7 +403,178 @@ class DateTimeUtils {
 
         return monthNumber;
     }
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * Generate an array of dates between two given dates.
+     * @param {Date} startDate - The start date.
+     * @param {Date} endDate - The end date.
+     * @returns {string[]} An array of date strings between the start and end dates.
+     * @throws {Error} If the startDate or endDate is not a valid Date object.
+     */
+    static getDatesInRange(startDate, endDate) {
+        if (!(startDate instanceof Date) || isNaN(startDate.getTime())) {
+            throw new Error("Invalid startDate");
+        }
+        if (!(endDate instanceof Date) || isNaN(endDate.getTime())) {
+            throw new Error("Invalid endDate");
+        }
 
+        const dates = [];
+        let currentDate = new Date(startDate);
+
+        while (currentDate &lt;= endDate) {
+            dates.push(new Date(currentDate).toISOString().slice(0, 10));
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        return dates;
+    }
+
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * Get all dates after a specified number of days from a given date.
+     * @param {string} dateStr - The date string in "YYYY-MM-DD" format.
+     * @param {number} days - The number of days to get dates after the given date.
+     * @returns {string[]} An array of date strings.
+     * @throws {Error} If the input is not a valid date string.
+     */
+    static getDatesAfter(dateStr, days) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+            throw new Error("Invalid date string format. Please use the 'YYYY-MM-DD' format.");
+        }
+
+        const dates = [];
+        const startDate = new Date(dateStr);
+
+        for (let i = 1; i &lt;= days; i++) {
+            const newDate = new Date(startDate);
+            newDate.setDate(startDate.getDate() + i);
+            dates.push(newDate.toISOString().slice(0, 10));
+        }
+
+        return dates;
+    }
+
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * Get all dates before a specified number of days from a given date.
+     * @param {string} dateStr - The date string in "YYYY-MM-DD" format.
+     * @param {number} days - The number of days to get dates before the given date.
+     * @returns {string[]} An array of date strings.
+     * @throws {Error} If the input is not a valid date string.
+     */
+    static getDatesBefore(dateStr, days) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+            throw new Error("Invalid date string format. Please use the 'YYYY-MM-DD' format.");
+        }
+
+        const dates = [];
+        const startDate = new Date(dateStr);
+
+        for (let i = 1; i &lt;= days; i++) {
+            const newDate = new Date(startDate);
+            newDate.setDate(startDate.getDate() - i);
+            dates.push(newDate.toISOString().slice(0, 10));
+        }
+
+        return dates;
+    }
+
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * Get the type of date from the input value.
+     * @param {(string|Date)} value - The input value to check.
+     * @returns {string} The type of date: "date", "time", "date-time", or "invalid".
+     */
+    static getDateType(value) {
+        if (typeof value === 'string' &amp;&amp; /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+            return "date";
+        } else if (typeof value === 'string' &amp;&amp; /^\d{2}:\d{2}:\d{2}$/.test(value)) {
+            return "time";
+        } else if (typeof value === 'string' &amp;&amp; /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(value)) {
+            return "date-time";
+        } else if (value instanceof Date &amp;&amp; !isNaN(value)) {
+            return "date";
+        } else {
+            return "invalid";
+        }
+    }
+
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * Get the format of the date from the input value.
+     * @param {(string|Date)} value - The input value to check.
+     * @returns {string} The format of the date: "YYYY-MM-DD", "HH:mm:ss", "YYYY-MM-DDTHH:mm:ss", or "Invalid Date".
+     */
+    static getDateFormat(value) {
+        if (typeof value === 'string' &amp;&amp; /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+            return "YYYY-MM-DD";
+        } else if (typeof value === 'string' &amp;&amp; /^\d{2}:\d{2}:\d{2}$/.test(value)) {
+            return "HH:mm:ss";
+        } else if (typeof value === 'string' &amp;&amp; /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(value)) {
+            return "YYYY-MM-DDTHH:mm:ss";
+        } else if (value instanceof Date &amp;&amp; !isNaN(value)) {
+            return "YYYY-MM-DD";
+        } else {
+            return "Invalid Date";
+        }
+    }
+    /**
+     * Date format constants.
+     * @readonly
+     * @enum {string}
+     */
+    static DATE_FORMAT = {
+        YYYY_MM_DD: "YYYY-MM-DD",
+        HH_mm_ss: "HH:mm:ss",
+        YYYY_MM_DDTHH_mm_ss: "YYYY-MM-DDTHH:mm:ss"
+    };
+
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * Convert a date to the specified format.
+     * @param {Date} date - The date object to convert.
+     * @param {string} format - The desired format for the date output. 
+     *                          Supported formats: "YYYY-MM-DD", "HH:mm:ss", "YYYY-MM-DDTHH:mm:ss".
+     * @param {boolean} [asString=false] - Whether to return the formatted date as a string or as a Date object.
+     * @returns {(string|Date)} The date in the specified format.
+     */
+    static convertDateFormat(date, format, asString = false) {
+        const options = {};
+        if (format === DateTimeUtils.DATE_FORMAT.YYYY_MM_DD) {
+            options.year = 'numeric';
+            options.month = '2-digit';
+            options.day = '2-digit';
+        } else if (format === DateTimeUtils.DATE_FORMAT.HH_mm_ss) {
+            options.hour = '2-digit';
+            options.minute = '2-digit';
+            options.second = '2-digit';
+        } else if (format === DateTimeUtils.DATE_FORMAT.YYYY_MM_DDTHH_mm_ss) {
+            options.year = 'numeric';
+            options.month = '2-digit';
+            options.day = '2-digit';
+            options.hour = '2-digit';
+            options.minute = '2-digit';
+            options.second = '2-digit';
+        } else {
+            throw new Error("Invalid date format");
+        }
+        const formatter = new Intl.DateTimeFormat('en', options);
+        const formattedDate = formatter.format(date);
+        return asString ? formattedDate : new Date(formattedDate);
+    }
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * Get the date part of a given date as a string in the format "YYYY-MM-DD".
+     * @param {Date} date - The date object.
+     * @returns {string} The date part of the input date in the format "YYYY-MM-DD".
+     */
+    static getDateOnly(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
 }
 
 
@@ -430,7 +601,7 @@ if (typeof module !== 'undefined' &amp;&amp; typeof module.exports !== 'undefine
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 23 2024 14:32:44 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 23 2024 15:44:28 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>
