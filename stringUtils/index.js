@@ -1,31 +1,39 @@
 /**
- * @class StringsUtils
+ * @author Mohammad Ayman Nawasrah
+ * A utility class for working with string.
+ * @class StringUtils
  */
-/* The StringUtils class provides a static method to remove non-word characters from a given string. */
 class StringUtils {
-/**
- * @author Asma Rasheed
- * The function `removeNonWord` removes all non-alphanumeric characters from a given string.
- * @param string - The `removeNonWord` function takes a string as input and removes any characters that
- * are not alphanumeric, spaces, hyphens, or accented characters. The regular expression
- * `/[^0-9a-zA-Z\xC0-\xFF \-]/g` is used to match any character that
- * @returns The `removeNonWord` function is returning a new string where all characters that are not
- * alphanumeric, spaces, hyphens, or accented characters are removed from the input `string`.
- */
-  static removeNonWord(string) {
-    return string.replace(/[^0-9a-zA-Z\xC0-\xFF \-]/g, "");
-  }
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * The function checks if a string is empty by comparing its length to zero.
+     * @param string - The `isEmpty` function is a static method that checks if a given string is empty.
+     * It returns `true` if the length of the string is 0, indicating that the string does not contain any
+     * characters.
+     * @returns The `isEmpty` method is returning a boolean value indicating whether the input string is
+     * empty or not. If the length of the string is 0, it will return `true`, indicating that the string
+     * is empty. Otherwise, it will return `false`.
+     */
+    static isEmpty(string) {
+        return string.length === 0
+    }
+    /**
+     * @author Mohammad Ayman Nawasrah
+     * The function `removeWhitespace` removes all whitespace characters from a given string.
+     * @param string - The `string` parameter is the input string from which you want to remove all
+     * whitespace characters.
+     * @returns The `removeWhitespace` method is being returned, which takes a string as input and removes
+     * all whitespace characters from it using a regular expression.
+     */
+    static removeWhitespace(string) {
+        return string.replace(/\s/g, "")
+    }
 }
 
-
-/* The code block `if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
-  module.exports = {
-    StringUtils,
-  };
-}` is a common pattern used in Node.js environments to export modules for use in other files. */
-
-if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
-  module.exports = {
-    StringUtils,
-  };
+/* This code block is a common pattern used in Node.js environments to export modules for use in other
+files. */
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = {
+        StringUtils
+    };
 }
