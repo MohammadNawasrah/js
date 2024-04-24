@@ -1,11 +1,11 @@
 /**
- * @author Mohammad Ayman Nawasrah
+ * @author Asma Rasheed
  * A utility class for working with string.
  * @class StringUtils
  */
 class StringUtils {
     /**
-     * @author Mohammad Ayman Nawasrah
+     * @author Asma Rasheed
      * The function checks if a string is empty by comparing its length to zero.
      * @param string - The `isEmpty` function is a static method that checks if a given string is empty.
      * It returns `true` if the length of the string is 0, indicating that the string does not contain any
@@ -18,7 +18,7 @@ class StringUtils {
         return string.length === 0
     }
     /**
-     * @author Mohammad Ayman Nawasrah
+     * @author Asma Rasheed
      * The function `removeWhitespace` removes all whitespace characters from a given string.
      * @param string - The `string` parameter is the input string from which you want to remove all
      * whitespace characters.
