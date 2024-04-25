@@ -132,7 +132,23 @@ class StringUtils {
 
     return string[0].toLowerCase() + string.slice(1);
   }
+  /**
+   * @author Asma Rasheed
+   * The function `firstLetterToUpper` takes a string as input and returns the same string with the first
+   * letter capitalized.
+   * @param string - The `firstLetterToUpper` function takes a string as input and returns the same
+   * string with the first letter converted to uppercase. If the input string is empty, it throws an
+   * error with the message "Empty string".
+   * @returns The `firstLetterToUpper` function is returning the input string with the first letter
+   * converted to uppercase.
+   */
+  static firstLetterToUpper(string) {
+    if (StringUtils.isEmpty(string)) {
+      throw new Error("Empty string");
+    }
 
+    return string[0].toUpperCase() + string.slice(1);
+  }
 }
 
 /* This code block is a common pattern used in Node.js environments to export modules for use in other
