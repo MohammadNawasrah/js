@@ -6,120 +6,113 @@
 /* The StringUtils class provides static methods for manipulating strings in JavaScript. */
 class StringUtils {
   /**
-   * @author Asma Rasheed
-   * The function checks if a string is empty by comparing its length to zero.
-   * @param string - The `isEmpty` function is a static method that checks if a given string is empty.
-   * It returns `true` if the length of the string is 0, indicating that the string does not contain any
-   * characters.
-   * @returns The `isEmpty` method is returning a boolean value indicating whether the input string is
-   * empty or not. If the length of the string is 0, it will return `true`, indicating that the string
-   * is empty. Otherwise, it will return `false`.
-   */
+  * @author Asma Rasheed
+  * The function isString checks if a given input is a string in JavaScript.
+  * @param string - The `string` parameter in the `isString` function is a variable that is being
+  * checked to determine if its type is a string. The function will return `true` if the type of the
+  * `string` variable is a string, and `false` otherwise.
+  * @returns The function `isString` is returning a boolean value indicating whether the input `string`
+  * is of type "string" or not.
+  */
+  static isString(string) {
+    return typeof string === "string";
+  }
+
+ /**
+  * @author Asma Rasheed
+  * The function `isEmpty` checks if a given string is empty.
+  * @param string - The `string` parameter in the `isEmpty` function is expected to be a string value.
+  * The function first checks if the input is a valid string using `StringUtils.isString(string)` and
+  * then returns `true` if the string is empty (has a length of 0), otherwise it returns `
+  * @returns The `isEmpty` function is returning a boolean value indicating whether the input string is
+  * empty or not. If the input string is empty, the function will return `true`, otherwise it will
+  * return `false`.
+  */
   static isEmpty(string) {
+    if (!StringUtils.isString(string)) {
+      throw new Error("Value is not a string");
+    }
     return string.length === 0;
   }
+/**
+ * @author Asma Rasheed
+ * The function `removeWhitespace` removes all whitespace characters from a given string.
+ * @param string - The `removeWhitespace` method takes a string as input and removes all whitespace
+ * characters (such as spaces, tabs, and newlines) from the string. If the input string is empty, it
+ * will throw an error with the message "Empty string".
+ * @returns The `removeWhitespace` method is returning the input string with all whitespace characters
+ * removed.
+ */
 
-  /**
-   * @author Asma Rasheed
-   * The function `isString` checks if a given input is a string in JavaScript.
-   * @param str - The parameter `str` in the `isString` function is expected to be a value of any data
-   * type. The function checks if the type of the input `str` is a string and returns `true` if it is,
-   * otherwise it returns `false`.
-   * @returns The `isString` function is returning a boolean value indicating whether the input `str` is
-   * a string or not. If `str` is a string, the function will return `true`, otherwise it will return
-   * `false`.
-   */
-  static isString(str) {
-    return typeof str === "string";
-  }
-
-  /**
-   * @author Asma Rasheed
-   * The function `removeWhitespace` removes all whitespace characters from a given string.
-   * @param string - The `string` parameter is the input string from which you want to remove all
-   * whitespace characters.
-   * @returns The `removeWhitespace` method is being returned, which takes a string as input and removes
-   * all whitespace characters from it using a regular expression.
-   */
   static removeWhitespace(string) {
-    if (StringUtils.isEmpty(string) === true) {
-      return "Empty string";
-    } else if (StringUtils.isString(string) === false) {
-      return "Value is not a string";
-    } else {
-      return string.replace(/\s/g, "");
+    if (StringUtils.isEmpty(string)) {
+      throw new Error("Empty string");
     }
+    return string.replace(/\s/g, "");
+  }
+
+ /**
+  * @author Asma Rasheed
+  * The function `removeSpaceFromStartAndEnd` removes leading and trailing spaces from a given string.
+  * @param string - The `string` parameter in the `removeSpaceFromStartAndEnd` function is the input
+  * string from which you want to remove any leading and trailing spaces.
+  * @returns The `removeSpaceFromStartAndEnd` function returns the input string with any leading and
+  * trailing spaces removed.
+  */
+  static removeSpaceFromStartAndEnd(string) {
+    if (StringUtils.isEmpty(string)) {
+      throw new Error("Empty string");
+    }
+    return string.trim();
+  }
+
+ /**
+  * @author Asma Rasheed
+  * The function `lowerCase` converts a given string to lowercase, throwing an error if the string is
+  * empty.
+  * @param string - The `lowerCase` function takes a `string` parameter as input. If the input string
+  * is empty, it throws an error with the message "Empty string". Otherwise, it converts the input
+  * string to lowercase using the `toLowerCase` method and returns the result.
+  * @returns The `lowerCase` function is returning the input string converted to lowercase using the
+  * `toLowerCase` method.
+  */
+  static lowerCase(string) {
+    if (StringUtils.isEmpty(string)) {
+      throw new Error("Empty string");
+    }
+    return string.toLowerCase();
+  }
+
+ /**
+  * @author Asma Rasheed
+  * The function `upperCase` takes a string as input and returns the uppercase version of the string,
+  * throwing an error if the input string is empty.
+  * @param string - The `upperCase` function takes a string as a parameter and converts it to uppercase
+  * using the `toUpperCase` method. If the input string is empty, it throws an error with the message
+  * "Empty string".
+  * @returns The `upperCase` function is returning the input string converted to uppercase using the
+  * `toUpperCase` method.
+  */
+  static upperCase(string) {
+    if (StringUtils.isEmpty(string)) {
+      throw new Error("Empty string");
+    }
+    return string.toUpperCase();
   }
 
   /**
    * @author Asma Rasheed
-   * The function `removeSpaceFromStartAndEnd` removes leading and trailing spaces from a given string.
-   * @param str - The `removeSpaceFromStartAndEnd` function takes a string `str` as a parameter and
-   * removes any leading and trailing spaces from it using the `trim()` method.
-   * @returns The `removeSpaceFromStartAndEnd` function is returning the input string `str` with any
-   * leading and trailing spaces removed using the `trim()` method.
-   */
-  static removeSpaceFromStartAndEnd(str) {
-    if (StringUtils.isEmpty(string) === true) {
-      return "Empty string";
-    } else if (StringUtils.isString(string) === false) {
-      return "Value is not a string";
-    } else {
-      return str.trim();
-    }
-  }
-
-  /**
-   * @author Asma Rasheed
-   * The static lowerCase function converts a string to lowercase in JavaScript.
-   * @param str - The parameter `str` in the `lowerCase` function is a string that you want to convert to
-   * lowercase.
-   * @returns The `lowerCase` method is returning the input string `str` converted to lowercase using the
-   * `toLowerCase()` method.
-   */
-  static lowerCase(str) {
-    if (StringUtils.isEmpty(string) === true) {
-      return "Empty string";
-    } else if (StringUtils.isString(string) === false) {
-      return "Value is not a string";
-    } else {
-      return str.toLowerCase();
-    }
-  }
-  /**
-   * @author Asma Rasheed
-   * The static `upperCase` function converts a given string to uppercase in JavaScript.
-   * @param str - The parameter `str` in the `upperCase` function is a string that you want to convert to
-   * uppercase letters.
-   * @returns The `upperCase` method is returning the input string `str` converted to uppercase using the
-   * `toUpperCase` method in JavaScript.
-   */
-  static upperCase(str) {
-    if (StringUtils.isEmpty(string) === true) {
-      return "Empty string";
-    } else if (StringUtils.isString(string) === false) {
-      return "Value is not a string";
-    } else {
-      return str.toUpperCase();
-    }
-  }
-
-  /**
-   * @author Asma Rasheed
-   * The function `convertToString` converts a value to a string in JavaScript.
+   * The function `convertToString` converts a value to a string and throws an error if the input is an
+   * empty string.
    * @param value - The `value` parameter in the `convertToString` function is the value that you want
    * to convert to a string.
-   * @returns The `convertToString` function is returning the string representation of the `value`
-   * parameter by calling the `toString()` method on it.
+   * @returns The `value` converted to a string is being returned.
    */
   static convertToString(value) {
-    if (StringUtils.isEmpty(string) === true) {
-      return "Empty string";
-    } else if (StringUtils.isString(string) === false) {
-      return "Value is not a string";
-    } else {
-      return value.toString();
+    if (StringUtils.isEmpty(string)) {
+      throw new Error("Empty string");
     }
+    return value.toString();
   }
 }
 
